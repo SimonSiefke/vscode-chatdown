@@ -18,16 +18,18 @@ const connection: IConnection = createConnection(
 const documents: TextDocuments = new TextDocuments()
 documents.listen(connection)
 
-connection.onInitialize((params): InitializeResult => {
-  return {
-    capabilities: {
-      textDocumentSync: TextDocumentSyncKind.Full,
-      completionProvider: {
-        resolveProvider: true
+connection.onInitialize(
+  (params): InitializeResult => {
+    return {
+      capabilities: {
+        textDocumentSync: TextDocumentSyncKind.Full,
+        completionProvider: {
+          resolveProvider: true
+        }
       }
     }
   }
-})
+)
 
 // This one cannot co-exist with connection.onDidChangeTextDocument
 // documents.onDidChangeContent(change => {
@@ -42,29 +44,33 @@ connection.onCompletion(
   (position: TextDocumentPositionParams): CompletionItem[] => {
     return [
       {
-        label: 'TypeScript',
+        label: 'user',
         kind: CompletionItemKind.Text,
-        data: 1
+        data: 1,
+        insertText: 'user: '
       },
       {
-        label: 'JavaScript',
+        label: 'bot',
         kind: CompletionItemKind.Text,
-        data: 2
+        data: 2,
+        insertText: 'bot: '
       }
     ]
   }
 )
 
-connection.onCompletionResolve((item: CompletionItem): CompletionItem => {
-  if (item.data === 1) {
-    item.detail = 'TypeScript details'
-    item.documentation = 'TypeScript documentation'
-  } else if (item.data === 2) {
-    item.detail = 'JavaScript details'
-    item.documentation = 'JavaScript documentation'
+connection.onCompletionResolve(
+  (item: CompletionItem): CompletionItem => {
+    if (item.data === 1) {
+      item.detail = 'User says'
+      // item.documentation = ''
+    } else if (item.data === 2) {
+      item.detail = 'Bot says'
+      // item.documentation = 'JavaScript documentation'
+    }
+    return item
   }
-  return item
-})
+)
 
 connection.onDidChangeTextDocument(params => {
   console.log(`${params.textDocument.uri} changed`)

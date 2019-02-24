@@ -20,11 +20,25 @@
     "vscode-languageclient": "^4.0.0",
     "vscode-languageserver-types": "^3.6.0"
   },
-  "activationEvents": [
-    "onLanguage:markdown"
-  ],
+  "activationEvents": ["onLanguage:markdown", "onLanguage:chatdown"],
   "main": "./dist/clientMain",
-  "contributes": {},
+  "contributes": {
+    "languages": [
+      {
+        "id": "chatdown",
+        "aliases": ["chatdown"],
+        "extensions": [".chat"],
+        "configuration": "./configurations/chatdown.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "chatdown",
+        "scopeName": "source.chatdown",
+        "path": "./syntaxes/chatdown.json"
+      }
+    ]
+  },
   "devDependencies": {
     "@types/node": "^9.4.6",
     "npm-run-all": "^4.1.3",

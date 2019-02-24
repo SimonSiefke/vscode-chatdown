@@ -7,5 +7,8 @@
       "fileMatch": ["/syntaxes/chatdown.json"],
       "url": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
     }
-  ]
+  ],
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json": "chatdown.yml"
+  }
 }

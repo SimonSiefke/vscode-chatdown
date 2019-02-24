@@ -6,18 +6,41 @@
   "patterns": [
     {
       "include": "#frontMatter"
+    },
+    {
+      "include": "#participants"
     }
   ],
   "repository": {
     "frontMatter": {
       "begin": "\\A",
-      "contentName": "meta.embedded.block.frontmatter",
+      "name": "meta.embedded.block.frontmatter",
       "patterns": [
         {
-          "include": "source.yaml"
+          "include": "#meta"
         }
       ],
       "end": "(^|\\G)\\s*$"
+    },
+    "meta": {
+      "patterns": [
+        {
+          "match": "^(users?|bot)",
+          "name": "entity.name.tag.chatdown"
+        },
+        {
+          "match": "=",
+          "name": "punctuation.separator.key-value.mapping.chatdown"
+        },
+        {
+          "match": "[^a-zA-Z\\s]+",
+          "name": "invalid.illegal.expected-value.chatdown"
+        },
+        {
+          "match": "[a-zA-Z]+",
+          "name": "string.unquoted.plain.out.chatdown"
+        }
+      ]
     }
   },
   "scopeName": "source.chatdown",

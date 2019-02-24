@@ -2,13 +2,27 @@ fileTypes: [chat]
 name: Chatdown
 patterns:
   - { include: "#frontMatter" }
+  - { include: "#participants" }
 repository:
   # the section where one defines the name of the bot and the name of the user(s)
   frontMatter:
-    begin: \A # start of the file
-    contentName: meta.embedded.block.frontmatter
+    begin: '\A' # start of the file
+    name: meta.embedded.block.frontmatter
     patterns:
-      - { include: source.yaml }
-    end: (^|\G)\s*$ # new line
+      - include: "#meta"
+    end: '(^|\G)\s*$' # new line
+  meta:
+    patterns:
+      - match: "^(users?|bot)"
+        name: "entity.name.tag.chatdown"
+      # - match: "[^\\s=]?"
+      #   name: "invalid.illegal.expected-equal.chatdown"
+      - match: "="
+        name: "punctuation.separator.key-value.mapping.chatdown"
+      - match: "[^a-zA-Z\\s]+"
+        name: "invalid.illegal.expected-value.chatdown"
+      - match: "[a-zA-Z]+"
+        name: "string.unquoted.plain.out.chatdown"
+
 scopeName: source.chatdown
 uuid: 0A1D9874-B448-11D9-BD50-000D94B6E43C

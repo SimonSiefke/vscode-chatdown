@@ -1,0 +1,107 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schema for bot configuration files",
+  "type": "object",
+  "definitions": {
+    "serviceId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[\\da-z]{8}-[\\da-z]{4}-[\\da-z]{4}-[\\da-z]{4}-[\\da-z]{12}$"
+        },
+        {
+          "type": "string",
+          "pattern": "^$"
+        }
+      ]
+    },
+    "optionsDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "name", "id"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Name of the bot"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the bot"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Version of the bot"
+        },
+        "secretKey": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "description": "The services that the bot uses",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Type of the service",
+                "enum": ["endpoint", "luis", "qna"]
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the service"
+              },
+              "id": {
+                "type": "string",
+                "description": "Unique identifier for the service"
+              },
+              "appId": {
+                "$ref": "#/definitions/serviceId"
+              },
+              "appPassword": {
+                "type": "string"
+              },
+              "endpoint": {
+                "type": "string",
+                "format": "uri"
+              },
+              "endpointKey": {
+                "type": "string"
+              },
+              "authoringKey": {
+                "$ref": "#/definitions/serviceId"
+              },
+              "hostname": {
+                "type": "string",
+                "format": "uri"
+              },
+              "kbId": {
+                "$ref": "#/definitions/serviceId"
+              },
+              "subscriptionKey": {
+                "$ref": "#/definitions/serviceId"
+              },
+              "region": {
+                "type": "string",
+                "description": "Region of the service",
+                "enum": ["westus"]
+              },
+              "version": {
+                "type": "string",
+                "description": "Version of the service",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/optionsDefinition"
+    }
+  ]
+}

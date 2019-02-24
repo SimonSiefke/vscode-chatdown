@@ -23,8 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: [
-      { scheme: 'file', language: 'markdown' },
-      { scheme: 'untitled', language: 'markdown' }
+      { scheme: 'file', language: 'chatdown' },
     ],
     synchronize: {
       configurationSection: []

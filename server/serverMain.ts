@@ -45,13 +45,13 @@ connection.onCompletion(
     return [
       {
         label: 'user',
-        kind: CompletionItemKind.Text,
+        kind: CompletionItemKind.Keyword,
         data: 1,
         insertText: 'user: '
       },
       {
         label: 'bot',
-        kind: CompletionItemKind.Text,
+        kind: CompletionItemKind.Keyword,
         data: 2,
         insertText: 'bot: '
       }
@@ -62,10 +62,10 @@ connection.onCompletion(
 connection.onCompletionResolve(
   (item: CompletionItem): CompletionItem => {
     if (item.data === 1) {
-      item.detail = 'User says'
+      item.detail = 'the user says'
       // item.documentation = ''
     } else if (item.data === 2) {
-      item.detail = 'Bot says'
+      item.detail = 'the bot says'
       // item.documentation = 'JavaScript documentation'
     }
     return item

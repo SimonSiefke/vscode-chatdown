@@ -1,0 +1,21 @@
+({
+  "$ref": "#/definitions/FileService"
+},
+{
+  "$ref": "#/definitions/LuisService"
+},
+{
+  "$ref": "#/definitions/DispatchService"
+},
+{
+  "$ref": "#/definitions/CosmosDBService"
+},
+{
+  "$ref": "#/definitions/BlobStorageService"
+},
+{
+  "$ref": "#/definitions/AppInsightsService"
+},
+{
+  "$ref": "#/definitions/BotService"
+})

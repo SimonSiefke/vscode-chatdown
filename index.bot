@@ -50,6 +50,17 @@
       "authoringKey": "91072cbd-b655-4539-b0a6-4c4397cb62a2",
       "subscriptionKey": "91072cbd-b655-4539-b0a6-4c4397cb62a2",
       "region": "westus"
-    }
+    },
+    {
+      "type": "abs",
+      "tenantId": "",
+      "appId": "",
+      "resourceGroup": "",
+      "serviceName": "a",
+      "subscriptionId": "",
+      "name": "2",
+      "id": "ff"
+    },
+    { "type": "file", "id": "dd", "name": "f", "path": "file://index.html" }
   ]
 }

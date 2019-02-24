@@ -5,13 +5,11 @@
   "definitions": {
     "ServiceId": {
       "type": "string",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/utils.ts#L14",
       "pattern": "^[\\da-f]{8}-?[\\da-f]{4}-?[1-5][\\da-f]{3}-?[89ab][\\da-f]{3}-?[\\da-f]{12}$"
     },
     "ServiceType": {
       "type": "string",
       "description": "Type of the service",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L12",
       "enum": [
         "appInsights",
         "abs",
@@ -28,8 +26,6 @@
 
     "ConnectedService": {
       "type": "object",
-      "description": "Properties of a connected service",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L28",
       "required": ["name"],
       "properties": {
         "type": {
@@ -43,10 +39,82 @@
         },
         "id": {
           "type": "string",
-          "description": "Unique Identifier for the service",
+          "description": "ID of the service",
           "minLength": 1
         }
       }
+    },
+    "QnAService": {
+      "description": "QnA service",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ConnectedService"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "$comment": "id, name are external",
+          "required": ["subscriptionKey", "kbId", "hostname", "endpointKey"],
+          "properties": {
+            "id": {},
+            "name": {},
+            "type": {
+              "const": "qna"
+            },
+            "subscriptionKey": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Subscription key for calling admin api"
+            },
+            "kbId": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Knowledge base id"
+            },
+            "hostname": {
+              "type": "string",
+              "description": "hostname for private service endpoint",
+              "format": "uri",
+              "examples": ["https://myqna.azurewebsites.net"]
+            },
+            "endpointKey": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Endpoint Key for querying the knowledge base"
+            }
+          }
+        }
+      ]
+    },
+    "GenericService": {
+      "description": "Generic service",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ConnectedService"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "$comment": "id, name are external",
+          "required": ["url", "configuration"],
+          "properties": {
+            "id": {},
+            "name": {},
+            "type": {
+              "const": "generic"
+            },
+            "url": {
+              "type": "string",
+              "description": "Deep link to service",
+              "format": "uri"
+            },
+            "configuration": {
+              "type": "object",
+              "description": "Configuration for the service",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
     },
     "EndpointService": {
       "allOf": [
@@ -82,6 +150,7 @@
         }
       ]
     },
+
     "AzureService": {
       "allOf": [
         {
@@ -89,7 +158,6 @@
         },
         {
           "type": "object",
-          "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L72",
           "required": ["tenantId", "subscriptionId", "resourceGroup", "serviceName"],
           "properties": {
             "tenantId": {
@@ -106,8 +174,7 @@
             },
             "serviceName": {
               "type": "string",
-              "description": "Name of the service",
-              "minLength": 1
+              "description": "Name of the azure service"
             }
           }
         }
@@ -119,7 +186,7 @@
           "$ref": "#/definitions/AzureService"
         },
         {
-          "description": "An Azure Bot Service",
+          "description": "Azure bot service",
           "type": "object",
           "additionalProperties": false,
           "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
@@ -132,7 +199,7 @@
             "id": {},
             "appId": {
               "$ref": "#/definitions/ServiceId",
-              "description": "App ID for the bot"
+              "description": "App id for the bot"
             },
             "type": {
               "const": "abs"
@@ -142,8 +209,7 @@
       ]
     },
     "BlobStorageService": {
-      "description": "JSON description of a blob storage service",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L136",
+      "description": "Blob storage service",
       "allOf": [
         {
           "$ref": "#/definitions/AzureService"
@@ -152,7 +218,14 @@
           "type": "object",
           "additionalProperties": false,
           "required": ["connectionString"],
+          "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
           "properties": {
+            "tenantId": {},
+            "subscriptionId": {},
+            "resourceGroup": {},
+            "serviceName": {},
+            "name": {},
+            "id": {},
             "connectionString": {
               "type": "string",
               "description": "Connection string for blob storage"
@@ -160,14 +233,16 @@
             "container": {
               "type": "string",
               "description": "Container name"
+            },
+            "type": {
+              "const": "blob"
             }
           }
         }
       ]
     },
     "CosmosDBService": {
-      "description": "JSON description of a CosmosDB service",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L136",
+      "description": "CosmosDB service",
       "allOf": [
         {
           "$ref": "#/definitions/AzureService"
@@ -175,11 +250,21 @@
         {
           "type": "object",
           "additionalProperties": false,
+          "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
           "required": ["endpoint", "key", "database", "collection"],
           "properties": {
+            "tenantId": {},
+            "subscriptionId": {},
+            "resourceGroup": {},
+            "serviceName": {},
+            "name": {},
+            "id": {},
+            "type": {
+              "const": "cosmosdb"
+            },
             "endpoint": {
               "type": "string",
-              "description": "Endpoint/uri for CosmosDB",
+              "description": "Endpoint for CosmosDB",
               "format": "uri"
             },
             "key": {
@@ -200,7 +285,6 @@
     },
     "DispatchService": {
       "description": "JSON description of a dispatch service",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L216",
       "allOf": [
         {
           "$ref": "#/definitions/LuisService"
@@ -212,7 +296,7 @@
           "properties": {
             "serviceIds": {
               "type": "array",
-              "description": "Service IDs that the dispatch model will dispatch across",
+              "description": "Service id's that the dispatch model will dispatch across",
               "items": {
                 "$ref": "#/definitions/ServiceId"
               }
@@ -225,7 +309,7 @@
       ]
     },
     "LuisService": {
-      "description": "JSON description of a LUIS service",
+      "description": "LUIS service",
       "allOf": [
         { "$ref": "#/definitions/ConnectedService" },
         {
@@ -238,7 +322,7 @@
             "name": {},
             "appId": {
               "type": "string",
-              "description": "Luis app ID"
+              "description": "Luis app id"
             },
             "authoringKey": {
               "$ref": "#/definitions/ServiceId",
@@ -266,7 +350,7 @@
       ]
     },
     "FileService": {
-      "description": "JSON description of a file.",
+      "description": "File service",
       "allOf": [
         { "$ref": "#/definitions/ConnectedService" },
         {
@@ -289,23 +373,33 @@
       ]
     },
     "AppInsightsService": {
-      "description": "JSON description of an App Insights service",
       "allOf": [
         {
           "$ref": "#/definitions/AzureService"
         },
         {
           "type": "object",
+          "description": "App Insights service",
           "additionalProperties": false,
+          "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
           "required": ["instrumentationKey"],
           "properties": {
+            "tenantId": {},
+            "subscriptionId": {},
+            "resourceGroup": {},
+            "serviceName": {},
+            "name": {},
+            "id": {},
+            "type": {
+              "const": "appInsights"
+            },
             "instrumentationKey": {
               "type": "string",
               "description": "Instrumentation key for logging data to appInsights"
             },
             "applicationId": {
               "type": "string",
-              "description": "Application ID used for programmatic access to AppInsights"
+              "description": "Application id used for programmatic access to AppInsights"
             },
             "apiKeys": {
               "type": "object",
@@ -363,6 +457,43 @@
             },
             "then": {
               "$ref": "#/definitions/FileService"
+            },
+            "else": {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "blob"
+                  }
+                }
+              },
+              "then": {
+                "$ref": "#/definitions/BlobStorageService"
+              },
+              "else": {
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "appInsights"
+                    }
+                  }
+                },
+                "then": {
+                  "$ref": "#/definitions/AppInsightsService"
+                },
+                "else": {
+                  "if": {
+                    "properties": {
+                      "type": {
+                        "const": "cosmosdb"
+                      }
+                    }
+                  },
+                  "then": {
+                    "$ref": "#/definitions/CosmosDBService"
+                  },
+                  "else": {}
+                }
+              }
             }
           }
         }

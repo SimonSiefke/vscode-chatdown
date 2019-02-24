@@ -33,13 +33,11 @@
         },
         "name": {
           "type": "string",
-          "description": "Human friendly name for the service",
-          "minLength": 1
+          "description": "Human friendly name for the service"
         },
         "id": {
           "type": "string",
-          "description": "Unique identifier for the service",
-          "minLength": 1
+          "description": "Unique identifier for the service"
         }
       }
     },
@@ -270,8 +268,7 @@
             },
             "appPassword": {
               "description": "App password for the bot",
-              "type": "string",
-              "minLength": 1
+              "type": "string"
             },
             "endpoint": {
               "type": "string",

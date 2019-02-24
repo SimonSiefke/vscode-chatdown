@@ -83,6 +83,22 @@
       "key": "",
       "resourceGroup": "",
       "serviceName": ""
+    },
+    {
+      "type": "qna",
+      "name": "",
+      "id": "",
+      "endpointKey": "",
+      "hostname": "",
+      "kbId": "",
+      "subscriptionKey": ""
+    },
+    { "type": "generic", "name": "generic", "url": "", "configuration": {} },
+    {
+      "type": ""
+    },
+    {
+      "type": "abs"
     }
   ]
 }

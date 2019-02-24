@@ -23,7 +23,6 @@
         "file"
       ]
     },
-
     "ConnectedService": {
       "type": "object",
       "required": ["name"],
@@ -34,123 +33,16 @@
         },
         "name": {
           "type": "string",
-          "description": "Friendly name for the service",
+          "description": "Human friendly name for the service",
           "minLength": 1
         },
         "id": {
           "type": "string",
-          "description": "ID of the service",
+          "description": "Unique identifier for the service",
           "minLength": 1
         }
       }
     },
-    "QnAService": {
-      "description": "QnA service",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ConnectedService"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "$comment": "id, name are external",
-          "required": ["subscriptionKey", "kbId", "hostname", "endpointKey"],
-          "properties": {
-            "id": {},
-            "name": {},
-            "type": {
-              "const": "qna"
-            },
-            "subscriptionKey": {
-              "$ref": "#/definitions/ServiceId",
-              "description": "Subscription key for calling admin api"
-            },
-            "kbId": {
-              "$ref": "#/definitions/ServiceId",
-              "description": "Knowledge base id"
-            },
-            "hostname": {
-              "type": "string",
-              "description": "hostname for private service endpoint",
-              "format": "uri",
-              "examples": ["https://myqna.azurewebsites.net"]
-            },
-            "endpointKey": {
-              "$ref": "#/definitions/ServiceId",
-              "description": "Endpoint Key for querying the knowledge base"
-            }
-          }
-        }
-      ]
-    },
-    "GenericService": {
-      "description": "Generic service",
-      "allOf": [
-        {
-          "$ref": "#/definitions/ConnectedService"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "$comment": "id, name are external",
-          "required": ["url", "configuration"],
-          "properties": {
-            "id": {},
-            "name": {},
-            "type": {
-              "const": "generic"
-            },
-            "url": {
-              "type": "string",
-              "description": "Deep link to service",
-              "format": "uri"
-            },
-            "configuration": {
-              "type": "object",
-              "description": "Configuration for the service",
-              "additionalProperties": {
-                "type": "string"
-              }
-            }
-          }
-        }
-      ]
-    },
-    "EndpointService": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/ConnectedService"
-        },
-        {
-          "type": "object",
-          "additionalProperties": false,
-          "$comment": "id and name are from ConnectedService",
-          "properties": {
-            "id": {},
-            "name": {},
-            "appId": {
-              "description": "App id for the bot",
-              "$ref": "#/definitions/ServiceId"
-            },
-            "appPassword": {
-              "description": "App password for the bot",
-              "type": "string",
-              "minLength": 1
-            },
-            "endpoint": {
-              "type": "string",
-              "description": "Endpoint of localhost service",
-              "format": "uri",
-              "pattern": "http://localhost:\\d{1,5}/api/messages"
-            },
-            "type": {
-              "const": "endpoint"
-            }
-          }
-        }
-      ]
-    },
-
     "AzureService": {
       "allOf": [
         {
@@ -175,6 +67,47 @@
             "serviceName": {
               "type": "string",
               "description": "Name of the azure service"
+            }
+          }
+        }
+      ]
+    },
+    "AppInsightsService": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AzureService"
+        },
+        {
+          "type": "object",
+          "description": "App Insights service",
+          "additionalProperties": false,
+          "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
+          "required": ["instrumentationKey"],
+          "properties": {
+            "tenantId": {},
+            "subscriptionId": {},
+            "resourceGroup": {},
+            "serviceName": {},
+            "name": {},
+            "id": {},
+            "type": {
+              "const": "appInsights"
+            },
+            "instrumentationKey": {
+              "type": "string",
+              "description": "Instrumentation key for logging data to appInsights"
+            },
+            "applicationId": {
+              "type": "string",
+              "description": "Application id used for programmatic access to AppInsights"
+            },
+            "apiKeys": {
+              "type": "object",
+              "description": "Named api keys for programmatic access to AppInsights",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "minProperties": 1
             }
           }
         }
@@ -283,26 +216,71 @@
         }
       ]
     },
-    "DispatchService": {
-      "description": "JSON description of a dispatch service",
+    "GenericService": {
+      "description": "Generic service",
       "allOf": [
         {
-          "$ref": "#/definitions/LuisService"
+          "$ref": "#/definitions/ConnectedService"
         },
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["serviceIds"],
+          "$comment": "id, name are external",
+          "required": ["url", "configuration"],
           "properties": {
-            "serviceIds": {
-              "type": "array",
-              "description": "Service id's that the dispatch model will dispatch across",
-              "items": {
-                "$ref": "#/definitions/ServiceId"
+            "id": {},
+            "name": {},
+            "type": {
+              "const": "generic"
+            },
+            "url": {
+              "type": "string",
+              "description": "Deep link to service",
+              "format": "uri"
+            },
+            "configuration": {
+              "type": "object",
+              "description": "Configuration for the service",
+              "additionalProperties": {
+                "type": "string"
               }
+            }
+          }
+        }
+      ]
+    },
+    "EndpointService": {
+      "description": "Endpoint Service",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ConnectedService"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "$comment": "id and name are from ConnectedService",
+          "properties": {
+            "id": {},
+            "name": {
+              "default": "development"
+            },
+            "appId": {
+              "description": "App id for the bot",
+              "$ref": "#/definitions/ServiceId"
+            },
+            "appPassword": {
+              "description": "App password for the bot",
+              "type": "string",
+              "minLength": 1
+            },
+            "endpoint": {
+              "type": "string",
+              "description": "Endpoint of localhost service",
+              "format": "uri",
+              "pattern": "http://localhost:\\d{1,5}/api/messages"
             },
             "type": {
-              "const": "dispatch"
+              "const": "endpoint"
             }
           }
         }
@@ -311,7 +289,9 @@
     "LuisService": {
       "description": "LUIS service",
       "allOf": [
-        { "$ref": "#/definitions/ConnectedService" },
+        {
+          "$ref": "#/definitions/ConnectedService"
+        },
         {
           "type": "object",
           "additionalProperties": false,
@@ -349,6 +329,70 @@
         }
       ]
     },
+    "QnAService": {
+      "description": "QnA service",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ConnectedService"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "$comment": "id, name are external",
+          "required": ["subscriptionKey", "kbId", "hostname", "endpointKey"],
+          "properties": {
+            "id": {},
+            "name": {},
+            "type": {
+              "const": "qna"
+            },
+            "subscriptionKey": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Subscription key for calling admin api"
+            },
+            "kbId": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Knowledge base ID"
+            },
+            "hostname": {
+              "type": "string",
+              "description": "Hostname for private service endpoint",
+              "format": "uri",
+              "examples": ["https://myqna.azurewebsites.net"]
+            },
+            "endpointKey": {
+              "$ref": "#/definitions/ServiceId",
+              "description": "Endpoint Key for querying the knowledge base"
+            }
+          }
+        }
+      ]
+    },
+    "DispatchService": {
+      "description": "Dispatch service",
+      "allOf": [
+        {
+          "$ref": "#/definitions/LuisService"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["serviceIds"],
+          "properties": {
+            "serviceIds": {
+              "type": "array",
+              "description": "Service id's that the dispatch model will dispatch across",
+              "items": {
+                "$ref": "#/definitions/ServiceId"
+              }
+            },
+            "type": {
+              "const": "dispatch"
+            }
+          }
+        }
+      ]
+    },
     "FileService": {
       "description": "File service",
       "allOf": [
@@ -372,126 +416,130 @@
         }
       ]
     },
-    "AppInsightsService": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/AzureService"
-        },
-        {
-          "type": "object",
-          "description": "App Insights service",
-          "additionalProperties": false,
-          "$comment": "tenantId, subscriptionId, resourceGroup, serviceName, name, id are external",
-          "required": ["instrumentationKey"],
-          "properties": {
-            "tenantId": {},
-            "subscriptionId": {},
-            "resourceGroup": {},
-            "serviceName": {},
-            "name": {},
-            "id": {},
-            "type": {
-              "const": "appInsights"
-            },
-            "instrumentationKey": {
-              "type": "string",
-              "description": "Instrumentation key for logging data to appInsights"
-            },
-            "applicationId": {
-              "type": "string",
-              "description": "Application id used for programmatic access to AppInsights"
-            },
-            "apiKeys": {
-              "type": "object",
-              "description": "Named api keys for programmatic access to AppInsights",
-              "additionalProperties": {
-                "type": "string"
-              },
-              "minProperties": 1
-            }
-          }
-        }
-      ]
-    },
+
     "ConnectedServices": {
       "$comment": "All the possible services",
       "if": {
+        "minProperties": 1,
         "properties": {
           "type": {
-            "const": "endpoint"
+            "const": "appInsights"
           }
         }
       },
       "then": {
-        "$ref": "#/definitions/EndpointService"
+        "$ref": "#/definitions/AppInsightsService"
       },
       "else": {
         "if": {
+          "minProperties": 1,
           "properties": {
             "type": {
-              "const": "luis"
+              "type": "string",
+              "const": "abs"
             }
           }
         },
         "then": {
-          "$ref": "#/definitions/LuisService"
+          "$ref": "#/definitions/BotService"
         },
         "else": {
           "if": {
+            "minProperties": 1,
             "properties": {
               "type": {
-                "const": "abs"
+                "const": "blob"
               }
             }
           },
           "then": {
-            "$ref": "#/definitions/BotService"
+            "$ref": "#/definitions/BlobStorageService"
           },
           "else": {
             "if": {
+              "minProperties": 1,
               "properties": {
                 "type": {
-                  "const": "file"
+                  "const": "cosmosdb"
                 }
               }
             },
             "then": {
-              "$ref": "#/definitions/FileService"
+              "$ref": "#/definitions/CosmosDBService"
             },
             "else": {
               "if": {
+                "minProperties": 1,
                 "properties": {
                   "type": {
-                    "const": "blob"
+                    "const": "generic"
                   }
                 }
               },
               "then": {
-                "$ref": "#/definitions/BlobStorageService"
+                "$ref": "#/definitions/GenericService"
               },
               "else": {
                 "if": {
+                  "minProperties": 1,
                   "properties": {
                     "type": {
-                      "const": "appInsights"
+                      "const": "endpoint"
                     }
                   }
                 },
                 "then": {
-                  "$ref": "#/definitions/AppInsightsService"
+                  "$ref": "#/definitions/EndpointService"
                 },
                 "else": {
                   "if": {
+                    "minProperties": 1,
                     "properties": {
                       "type": {
-                        "const": "cosmosdb"
+                        "const": "luis"
                       }
                     }
                   },
                   "then": {
-                    "$ref": "#/definitions/CosmosDBService"
+                    "$ref": "#/definitions/LuisService"
                   },
-                  "else": {}
+                  "else": {
+                    "if": {
+                      "minProperties": 1,
+                      "properties": {
+                        "type": {
+                          "const": "qna"
+                        }
+                      }
+                    },
+                    "then": {
+                      "$ref": "#/definitions/QnAService"
+                    },
+                    "else": {
+                      "if": {
+                        "minProperties": 1,
+                        "properties": {
+                          "type": {
+                            "const": "file"
+                          }
+                        }
+                      },
+                      "then": {
+                        "$ref": "#/definitions/FileService"
+                      },
+                      "else": {
+                        "type": "object",
+                        "description": "Service",
+                        "additionalProperties": false,
+                        "required": ["type"],
+                        "properties": {
+                          "type": {
+                            "$ref": "#/definitions/ServiceType"
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }

@@ -1,5 +1,11 @@
 {
   "files.associations": {
     "*.json": "jsonc"
-  }
+  },
+  "json.schemas": [
+    {
+      "fileMatch": ["/syntaxes/chatdown.json"],
+      "url": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
+    }
+  ]
 }

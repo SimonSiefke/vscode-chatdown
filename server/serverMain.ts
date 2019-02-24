@@ -42,6 +42,7 @@ connection.onDidChangeWatchedFiles(change => {
 
 connection.onCompletion(
   (position: TextDocumentPositionParams): CompletionItem[] => {
+    return []
     return [
       {
         label: 'user',

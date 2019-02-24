@@ -1,0 +1,19 @@
+{
+  "scopeName": "source.chatdown",
+  "fileTypes": ["chat"],
+  "patterns": [
+    {
+      "include": "#participant"
+    }
+  ],
+  "repository": {
+    "participant": {
+      "patterns": [
+        {
+          "name": "markup.bold.chat",
+          "match": "(bot|user):"
+        }
+      ]
+    }
+  }
+}

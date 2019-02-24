@@ -1,0 +1,25 @@
+{
+  "fileTypes": [
+    "chat"
+  ],
+  "name": "Chatdown",
+  "patterns": [
+    {
+      "include": "#frontMatter"
+    }
+  ],
+  "repository": {
+    "frontMatter": {
+      "begin": "\\A",
+      "contentName": "meta.embedded.block.frontmatter",
+      "patterns": [
+        {
+          "include": "source.yaml"
+        }
+      ],
+      "end": "(^|\\G)\\s*$"
+    }
+  },
+  "scopeName": "source.chatdown",
+  "uuid": "0A1D9874-B448-11D9-BD50-000D94B6E43C"
+}

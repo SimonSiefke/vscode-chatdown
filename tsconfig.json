@@ -3,6 +3,7 @@
     // Basic
     "module": "commonjs",
     "target": "es6",
+    "skipLibCheck": true,
 
     // Output
     "outDir": "dist",
@@ -14,9 +15,7 @@
 
     // Strictness
     "strict": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": true
   },
-  "include": [
-    "client"
-  ]
+  "include": ["client"]
 }

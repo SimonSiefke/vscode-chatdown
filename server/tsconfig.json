@@ -15,5 +15,6 @@
     // Strictness
     "strict": true,
     "noUnusedLocals": true,
+    "skipLibCheck": true
   }
 }

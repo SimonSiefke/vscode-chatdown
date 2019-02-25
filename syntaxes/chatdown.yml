@@ -6,6 +6,19 @@ patterns:
 repository:
   frontMatter:
     patterns:
+      - match: "^(channelId)(=)\\s*([a-z]+)\\s*$"
+        name: meta.frontmatter.chatdown
+        captures:
+          1:
+            name: meta.frontmatter.key.chatdown
+            patterns:
+              - include: "#frontmatter.key"
+          2:
+            name: meta.frontmatter.separator.chatdown
+          3:
+            name: meta.frontmatter.value.chatdown
+            patterns:
+              - include: "#frontmatter.value"
       - match: "^(user|bot)(=)\\s*([a-zA-Z]+)\\s*$"
         name: meta.frontmatter.chatdown
         captures:
@@ -37,56 +50,56 @@ repository:
   frontmatter.key:
     patterns:
       - match: ".*"
-        name: variable.other
+        name: variable.other.chatdown
   frontmatter.separator:
     patterns:
       - match: ".*"
-        name: keyword.operator.assignment
+        name: keyword.operator.assignment.chatdown
   frontmatter.value:
     patterns:
       - match: "[a-zA-Z]+"
-        name: string.unquoted
+        name: string.unquoted.chatdown
       - match: ","
         name: punctuation.separator.chatdown
   chat:
     patterns:
-      - begin: "^(bot->(?!bot:)[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)"
+      - begin: "^(?:(bot->(?!bot:)[a-zA-Z]+)|(bot)|([a-zA-Z]+))(:)"
         end: "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))"
         name: meta.chat
         beginCaptures:
           1:
-            name: meta.chat.participant.directmessage
+            name: meta.chat.participant.directmessage.chatdown
             patterns:
               - match: "bot"
-                name: meta.chat.participant.bot
+                name: meta.chat.participant.bot.chatdown
                 captures:
                   0:
                     patterns:
                       - include: "#chat.participant.bot"
               - match: "->"
-                name: meta.chat.separator.messageto
+                name: meta.chat.separator.messageto.chatdown
                 captures:
                   0:
                     patterns:
                       - include: "#chat.separator.messageto"
               - match: "[a-zA-Z]+"
-                name: meta.chat.participant.user
+                name: meta.chat.participant.user.chatdown
                 captures:
                   0:
                     patterns:
                       - include: "#chat.participant.user"
           2:
-            name: meta.chat.participant.bot
+            name: meta.chat.participant.bot.chatdown
             patterns:
               - include: "#chat.participant.bot"
           3:
-            name: meta.chat.participant.user
+            name: meta.chat.participant.user.chatdown
             patterns:
               - include: "#chat.participant.user"
           4:
-            name: chat.separator
+            name: meta.chat.separator.chatdown
         patterns:
-          - name: meta.chat.text
+          - name: meta.chat.text.chatdown
             begin: "(?=[a-zA-Z\\s=:.]*)"
             end: "^(?=[.=]*)$"
             patterns:
@@ -94,23 +107,23 @@ repository:
   chat.participant.user:
     patterns:
       - match: ".*"
-        name: markup.bold
+        name: markup.bold.chatdown
   chat.participant.bot:
     patterns:
       - match: ".*"
-        name: markup.bold
+        name: markup.bold.chatdown
   chat.separator:
     patterns:
       - match: ".*"
-        name: markup.bold
+        name: markup.bold.chatdown
   chat.separator.messageto:
     patterns:
       - match: ".*"
-        name: markup.bold
+        name: markup.bold.chatdown
   chat.text:
     patterns:
       - match: ".*"
-        name: meta.paragraph.markdown
+        name: meta.paragraph.markdown.chatdown
   # chat:
   #   patterns:
   #     - match: "^[a-zA-Z]+(?:(->)([a-zA-Z]+))?"

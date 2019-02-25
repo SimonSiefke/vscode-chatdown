@@ -198,8 +198,8 @@
           "patterns": [
             {
               "name": "meta.chat.text.chatdown",
-              "begin": "(?=[a-zA-Z\\s=:.]*)",
-              "end": "^(?=[.=]*)$",
+              "begin": "(?=.|\\s)",
+              "end": "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))",
               "patterns": [
                 {
                   "include": "#chat.text"
@@ -245,7 +245,7 @@
     "chat.text": {
       "patterns": [
         {
-          "match": ".*",
+          "match": "(.*|^\\s*$)",
           "name": "meta.paragraph.markdown.chatdown"
         }
       ]

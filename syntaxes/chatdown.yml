@@ -100,8 +100,8 @@ repository:
             name: meta.chat.separator.chatdown
         patterns:
           - name: meta.chat.text.chatdown
-            begin: "(?=[a-zA-Z\\s=:.]*)"
-            end: "^(?=[.=]*)$"
+            begin: "(?=.|\\s)"
+            end: "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))"
             patterns:
               - include: "#chat.text"
   chat.participant.user:
@@ -122,7 +122,7 @@ repository:
         name: markup.bold.chatdown
   chat.text:
     patterns:
-      - match: ".*"
+      - match: "(.*|^\\s*$)"
         name: meta.paragraph.markdown.chatdown
   # chat:
   #   patterns:

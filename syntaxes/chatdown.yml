@@ -50,27 +50,31 @@ repository:
         name: punctuation.separator.chatdown
   chat:
     patterns:
-      - begin: "^(bot->[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)"
+      - begin: "^(bot->(?!bot:)[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)"
         end: "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))"
         name: meta.chat
         beginCaptures:
           1:
             name: meta.chat.participant.directmessage
             patterns:
-              - name: meta.chat.participant.bot
-                begin: "bot"
-                end: ""
-                beginCaptures:
+              - match: "bot"
+                name: meta.chat.participant.bot
+                captures:
                   0:
                     patterns:
                       - include: "#chat.participant.bot"
               - match: "->"
-                name: meta.chat.separator.to
-              - begin: "(?=.*)"
-                end: "\\z"
+                name: meta.chat.separator.messageto
+                captures:
+                  0:
+                    patterns:
+                      - include: "#chat.separator.messageto"
+              - match: "[a-zA-Z]+"
                 name: meta.chat.participant.user
-                patterns:
-                  - include: "#chat.participant.user"
+                captures:
+                  0:
+                    patterns:
+                      - include: "#chat.participant.user"
           2:
             name: meta.chat.participant.bot
             patterns:
@@ -81,9 +85,6 @@ repository:
               - include: "#chat.participant.user"
           4:
             name: chat.separator
-        endCaptures:
-          0:
-            name: markup.italic
         patterns:
           - name: meta.chat.text
             begin: "(?=[a-zA-Z\\s=:.]*)"
@@ -97,7 +98,15 @@ repository:
   chat.participant.bot:
     patterns:
       - match: ".*"
-        name: markup.italic
+        name: markup.bold
+  chat.separator:
+    patterns:
+      - match: ".*"
+        name: markup.bold
+  chat.separator.messageto:
+    patterns:
+      - match: ".*"
+        name: markup.bold
   chat.text:
     patterns:
       - match: ".*"

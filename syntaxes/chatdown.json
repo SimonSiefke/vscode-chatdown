@@ -102,7 +102,7 @@
     "chat": {
       "patterns": [
         {
-          "begin": "^(bot->[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)",
+          "begin": "^(bot->(?!bot:)[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)",
           "end": "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))",
           "name": "meta.chat",
           "beginCaptures": {
@@ -110,10 +110,9 @@
               "name": "meta.chat.participant.directmessage",
               "patterns": [
                 {
+                  "match": "bot",
                   "name": "meta.chat.participant.bot",
-                  "begin": "bot",
-                  "end": "",
-                  "beginCaptures": {
+                  "captures": {
                     "0": {
                       "patterns": [
                         {
@@ -125,17 +124,29 @@
                 },
                 {
                   "match": "->",
-                  "name": "meta.chat.separator.to"
+                  "name": "meta.chat.separator.messageto",
+                  "captures": {
+                    "0": {
+                      "patterns": [
+                        {
+                          "include": "#chat.separator.messageto"
+                        }
+                      ]
+                    }
+                  }
                 },
                 {
-                  "begin": "(?=.*)",
-                  "end": "\\z",
+                  "match": "[a-zA-Z]+",
                   "name": "meta.chat.participant.user",
-                  "patterns": [
-                    {
-                      "include": "#chat.participant.user"
+                  "captures": {
+                    "0": {
+                      "patterns": [
+                        {
+                          "include": "#chat.participant.user"
+                        }
+                      ]
                     }
-                  ]
+                  }
                 }
               ]
             },
@@ -157,11 +168,6 @@
             },
             "4": {
               "name": "chat.separator"
-            }
-          },
-          "endCaptures": {
-            "0": {
-              "name": "markup.italic"
             }
           },
           "patterns": [
@@ -191,7 +197,23 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.italic"
+          "name": "markup.bold"
+        }
+      ]
+    },
+    "chat.separator": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.bold"
+        }
+      ]
+    },
+    "chat.separator.messageto": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.bold"
         }
       ]
     },

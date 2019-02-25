@@ -99,6 +99,7 @@ repository:
           4:
             name: meta.chat.separator.chatdown
         patterns:
+          # TODO make it span multiple lines
           - name: meta.chat.text.chatdown
             begin: "(?=.|\\s)"
             end: "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))"

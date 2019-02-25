@@ -102,19 +102,60 @@
     "chat": {
       "patterns": [
         {
-          "begin": "^([a-zA-Z]+)(:)",
-          "end": "^(?=[a-zA-Z]+:.*)",
+          "begin": "^(bot->[a-zA-Z]+)|(bot)|([a-zA-Z]+)(:)",
+          "end": "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))",
           "name": "meta.chat",
           "beginCaptures": {
             "1": {
-              "name": "meta.chat.participant",
+              "name": "meta.chat.participant.directmessage",
               "patterns": [
                 {
-                  "include": "#chat.participant"
+                  "name": "meta.chat.participant.bot",
+                  "begin": "bot",
+                  "end": "",
+                  "beginCaptures": {
+                    "0": {
+                      "patterns": [
+                        {
+                          "include": "#chat.participant.bot"
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "match": "->",
+                  "name": "meta.chat.separator.to"
+                },
+                {
+                  "begin": "(?=.*)",
+                  "end": "\\z",
+                  "name": "meta.chat.participant.user",
+                  "patterns": [
+                    {
+                      "include": "#chat.participant.user"
+                    }
+                  ]
                 }
               ]
             },
             "2": {
+              "name": "meta.chat.participant.bot",
+              "patterns": [
+                {
+                  "include": "#chat.participant.bot"
+                }
+              ]
+            },
+            "3": {
+              "name": "meta.chat.participant.user",
+              "patterns": [
+                {
+                  "include": "#chat.participant.user"
+                }
+              ]
+            },
+            "4": {
               "name": "chat.separator"
             }
           },
@@ -138,11 +179,19 @@
         }
       ]
     },
-    "chat.participant": {
+    "chat.participant.user": {
       "patterns": [
         {
           "match": ".*",
           "name": "markup.bold"
+        }
+      ]
+    },
+    "chat.participant.bot": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.italic"
         }
       ]
     },

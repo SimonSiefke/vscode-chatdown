@@ -15,11 +15,11 @@
     "frontMatter": {
       "patterns": [
         {
-          "match": "^(user|users|bot)(=)\\s*([a-zA-Z]+(,\\s*[a-zA-Z]+)*)\\s*$",
-          "name": "frontmatter",
+          "match": "^(user|bot)(=)\\s*([a-zA-Z]+)\\s*$",
+          "name": "meta.frontmatter.chatdown",
           "captures": {
             "1": {
-              "name": "meta.frontmatter.key",
+              "name": "meta.frontmatter.key.chatdown",
               "patterns": [
                 {
                   "include": "#frontmatter.key"
@@ -27,10 +27,35 @@
               ]
             },
             "2": {
-              "name": "meta.frontmatter.separator"
+              "name": "meta.frontmatter.separator.chatdown"
             },
             "3": {
-              "name": "meta.frontmatter.value",
+              "name": "meta.frontmatter.value.chatdown",
+              "patterns": [
+                {
+                  "include": "#frontmatter.value"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "^(users)(=)\\s*([a-zA-Z]+(,\\s*[a-zA-Z]+)*)\\s*$",
+          "name": "meta.frontmatter.chatdown",
+          "captures": {
+            "1": {
+              "name": "meta.frontmatter.key.chatdown",
+              "patterns": [
+                {
+                  "include": "#frontmatter.key"
+                }
+              ]
+            },
+            "2": {
+              "name": "meta.frontmatter.separator.chatdown"
+            },
+            "3": {
+              "name": "meta.frontmatter.value.chatdown",
               "patterns": [
                 {
                   "include": "#frontmatter.value"
@@ -45,22 +70,63 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.bold"
+          "name": "variable.other"
         }
       ]
     },
     "frontmatter.value": {
       "patterns": [
         {
-          "match": ".*",
-          "name": "markup.bold"
+          "match": "[a-zA-Z]+",
+          "name": "string.unquoted"
+        },
+        {
+          "match": ",",
+          "name": "punctuation.separator.chatdown"
         }
       ]
     },
     "chat": {
       "patterns": [
         {
-          "match": "^[a-zA-Z]+:.*",
+          "match": "^(bot|[a-zA-Z]+)(:)\\s*([^:]*)$",
+          "name": "meta.chat",
+          "captures": {
+            "1": {
+              "name": "meta.chat.key",
+              "patterns": [
+                {
+                  "include": "#chat.key"
+                }
+              ]
+            },
+            "2": {
+              "name": "meta.chat.separator"
+            },
+            "3": {
+              "name": "meta.chat.value",
+              "patterns": [
+                {
+                  "include": "#chat.value"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "chat.key": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.italic"
+        }
+      ]
+    },
+    "chat.value": {
+      "patterns": [
+        {
+          "match": ".*",
           "name": "markup.italic"
         }
       ]

@@ -65,9 +65,11 @@ repository:
           0:
             name: markup.italic
         patterns:
-          - match: ".*"
-            name: meta.chat.text
-            include: "#chat.text"
+          - name: meta.chat.text
+            begin: "(?=[a-zA-Z\\s=:.]*)"
+            end: "^(?=[.=]*)$"
+            patterns:
+              - include: "#chat.text"
 
   chat.participant:
     patterns:

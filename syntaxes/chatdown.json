@@ -125,9 +125,14 @@
           },
           "patterns": [
             {
-              "match": ".*",
               "name": "meta.chat.text",
-              "include": "#chat.text"
+              "begin": "(?=[a-zA-Z\\s=:.]*)",
+              "end": "^(?=[.=]*)$",
+              "patterns": [
+                {
+                  "include": "#chat.text"
+                }
+              ]
             }
           ]
         }

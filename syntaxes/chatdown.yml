@@ -65,7 +65,7 @@ repository:
     patterns:
       - begin: "^(?:(bot->(?!bot:)[a-zA-Z]+)|(bot)|([a-zA-Z]+))(:)"
         end: "^(?=(bot->[a-zA-Z]+:.*)|([a-zA-Z]+:.*))"
-        name: meta.chat
+        name: meta.chat.chatdown
         beginCaptures:
           1:
             name: meta.chat.participant.directmessage.chatdown

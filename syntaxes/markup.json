@@ -1,0 +1,49 @@
+{
+  "fileTypes": ["chat"],
+  "name": "Chatdown",
+  "patterns": [
+    {
+      "include": "#bold"
+    },
+    {
+      "include": "#italic"
+    }
+  ],
+  "repository": {
+    "bold": {
+      "patterns": [
+        {
+          "name": "markup.bold",
+          "match": "\\*.*?\\*",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#italic"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "italic": {
+      "patterns": [
+        {
+          "name": "markup.italic",
+          "match": "_.*?_",
+          "captures": {
+            "0": {
+              "patterns": [
+                {
+                  "include": "#bold"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "scopeName": "source.chatdown"
+}

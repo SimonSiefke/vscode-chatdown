@@ -8,41 +8,63 @@
       "include": "#frontMatter"
     },
     {
-      "include": "#participants"
+      "include": "#chat"
     }
   ],
   "repository": {
     "frontMatter": {
-      "begin": "\\A",
-      "name": "meta.embedded.block.frontmatter",
       "patterns": [
         {
-          "include": "#meta"
+          "match": "^(user|users|bot)(=)\\s*([a-zA-Z]+(,\\s*[a-zA-Z]+)*)\\s*$",
+          "name": "frontmatter",
+          "captures": {
+            "1": {
+              "name": "meta.frontmatter.key",
+              "patterns": [
+                {
+                  "include": "#frontmatter.key"
+                }
+              ]
+            },
+            "2": {
+              "name": "meta.frontmatter.separator"
+            },
+            "3": {
+              "name": "meta.frontmatter.value",
+              "patterns": [
+                {
+                  "include": "#frontmatter.value"
+                }
+              ]
+            }
+          }
         }
-      ],
-      "end": "(^|\\G)\\s*$"
+      ]
     },
-    "meta": {
+    "frontmatter.key": {
       "patterns": [
         {
-          "match": "^(users?|bot)",
-          "name": "entity.name.tag.chatdown"
-        },
+          "match": ".*",
+          "name": "markup.bold"
+        }
+      ]
+    },
+    "frontmatter.value": {
+      "patterns": [
         {
-          "match": "=",
-          "name": "punctuation.separator.key-value.mapping.chatdown"
-        },
+          "match": ".*",
+          "name": "markup.bold"
+        }
+      ]
+    },
+    "chat": {
+      "patterns": [
         {
-          "match": "[^a-zA-Z\\s]+",
-          "name": "invalid.illegal.expected-value.chatdown"
-        },
-        {
-          "match": "[a-zA-Z]+",
-          "name": "string.unquoted.plain.out.chatdown"
+          "match": "^[a-zA-Z]+:.*",
+          "name": "markup.italic"
         }
       ]
     }
   },
-  "scopeName": "source.chatdown",
-  "uuid": "0A1D9874-B448-11D9-BD50-000D94B6E43C"
+  "scopeName": "source.chatdown"
 }

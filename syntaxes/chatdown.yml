@@ -2,27 +2,107 @@ fileTypes: [chat]
 name: Chatdown
 patterns:
   - { include: "#frontMatter" }
-  - { include: "#participants" }
+  - { include: "#chat" }
 repository:
-  # the section where one defines the name of the bot and the name of the user(s)
   frontMatter:
-    begin: '\A' # start of the file
-    name: meta.embedded.block.frontmatter
     patterns:
-      - include: "#meta"
-    end: '(^|\G)\s*$' # new line
-  meta:
+      - match: "^(user|users|bot)(=)\\s*([a-zA-Z]+(,\\s*[a-zA-Z]+)*)\\s*$"
+        name: frontmatter
+        captures:
+          1:
+            name: meta.frontmatter.key
+            patterns:
+              - include: "#frontmatter.key"
+          2:
+            name: meta.frontmatter.separator
+          3:
+            name: meta.frontmatter.value
+            patterns:
+              - include: "#frontmatter.value"
+  frontmatter.key:
     patterns:
-      - match: "^(users?|bot)"
-        name: "entity.name.tag.chatdown"
-      # - match: "[^\\s=]?"
-      #   name: "invalid.illegal.expected-equal.chatdown"
-      - match: "="
-        name: "punctuation.separator.key-value.mapping.chatdown"
-      - match: "[^a-zA-Z\\s]+"
-        name: "invalid.illegal.expected-value.chatdown"
-      - match: "[a-zA-Z]+"
-        name: "string.unquoted.plain.out.chatdown"
+      - match: ".*"
+        name: markup.bold
+  frontmatter.value:
+    patterns:
+      - match: ".*"
+        name: markup.bold
 
+  chat:
+    patterns:
+      - match: "^[a-zA-Z]+:.*"
+        name: markup.italic
+  # meta:
+  #   patterns:
+  #     - match: "a-zA-Z"
+  #       name: markup.italic
+  # - include: "#meta"
+  # while: "(?=[a-zA-Z]+\\s*=\\s*[a-zA-Z]+)" # new line
+  # end: "^$"
+  # end: "^\\s*(?=([a-zA-Z]+=[a-zA-Z]+)*)" # new line
+  # while: "(?=\\s+)|(?=^$)" # new line
+  # meta:
+  #   patterns:
+  #     - match: "^(users?|bot)"
+  #       name: "entity.name.tag.chatdown"
+  #     - match: "="
+  #       name: "punctuation.separator.key-value.mapping.chatdown"
+  #     - match: "[^a-zA-Z\\s]+"
+  #       name: "invalid.illegal.expected-value.chatdown"
+  #     - match: "[a-zA-Z]+"
+  #       name: "string.unquoted.chatdown"
+  # chat:
+  #   patterns:
+  #     - match: "^[a-zA-Z]+(?:(->)([a-zA-Z]+))?"
+  #       captures:
+  #         0:
+  #           name: "entity.name.tag.chatdown"
+  #         1:
+  #           name: keyword.operator.to.chatdown
+  #         2:
+  #           name: "entity.name.tag.chatdown"
+  #     - match: "([^:]+)(?=:)"
+  #       name: invalid.illegal.expected-colon.chatdown
+  #     - match: ":"
+  #       name: "punctuation.separator.key-value.mapping.chatdown"
+  #     - match: ".*$"
+  #       name: "meta.structure.dictionary.value.json"
+  #       captures:
+  #         0:
+  #           patterns:
+  #             - include: "#value"
+  # value:
+  #   patterns:
+  #     - begin: "\\["
+  #       end: "\\]"
+  #       beginCaptures:
+  #         0:
+  #           name: "punctuation.definition.array.begin.chatdown"
+  #       endCaptures:
+  #         0:
+  #           name: "punctuation.definition.array.end.chatdown"
+  #       name: "meta.structure.array"
+  #       patterns:
+  #         - include: "#insideArrayKeyValue"
+  # insideArrayKeyValue:
+  #   patterns:
+  #     - match: "(Typing|Delay|ConversationUpdate)"
+  #       name: "constant.language.chatdown"
+  #     - match: "="
+  #       name: punctuation.separator.key-value.mapping.chatdown
+  #     - match: "\\w*"
+  #       name: "meta.structure.dictionary.value.chatdown"
+  #       captures:
+  #         0:
+  #           patterns:
+  #             - include: "#number"
+  #             - include: "#string"
+  # number:
+  #   patterns:
+  #     - match: "(?<!\\w)(?:(0|[1-9]\\d*))"
+  #       name: constant.numeric.chatdown
+  # string:
+  #   patterns:
+  #     - match: "[a-zA-Z\\d]+"
+  #       name: "string.unquoted.chatdown"
 scopeName: source.chatdown
-uuid: 0A1D9874-B448-11D9-BD50-000D94B6E43C

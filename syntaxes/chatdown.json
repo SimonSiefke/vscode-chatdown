@@ -245,9 +245,6 @@
     "chat.text": {
       "patterns": [
         {
-          "include": "text.html.markdown"
-        },
-        {
           "match": "(.*|^\\s*$)",
           "name": "meta.paragraph.markdown.chatdown"
         }

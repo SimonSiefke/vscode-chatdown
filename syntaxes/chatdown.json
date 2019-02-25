@@ -52,7 +52,12 @@
               ]
             },
             "2": {
-              "name": "meta.frontmatter.separator.chatdown"
+              "name": "meta.frontmatter.separator.chatdown",
+              "patterns": [
+                {
+                  "include": "#frontmatter.separator"
+                }
+              ]
             },
             "3": {
               "name": "meta.frontmatter.value.chatdown",
@@ -74,6 +79,14 @@
         }
       ]
     },
+    "frontmatter.separator": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "keyword.operator.assignment"
+        }
+      ]
+    },
     "frontmatter.value": {
       "patterns": [
         {
@@ -89,29 +102,50 @@
     "chat": {
       "patterns": [
         {
-          "match": "^(bot|[a-zA-Z]+)(:)\\s*([^:]*)$",
+          "begin": "^([a-zA-Z]+)(:)",
+          "end": "^(?=[a-zA-Z]+:.*)",
           "name": "meta.chat",
-          "captures": {
+          "beginCaptures": {
             "1": {
-              "name": "meta.chat.key",
+              "name": "meta.chat.participant",
               "patterns": [
                 {
-                  "include": "#chat.key"
+                  "include": "#chat.participant"
                 }
               ]
             },
             "2": {
-              "name": "meta.chat.separator"
-            },
-            "3": {
-              "name": "meta.chat.value",
-              "patterns": [
-                {
-                  "include": "#chat.value"
-                }
-              ]
+              "name": "chat.separator"
             }
-          }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "markup.italic"
+            }
+          },
+          "patterns": [
+            {
+              "match": ".*",
+              "name": "meta.chat.text",
+              "include": "#chat.text"
+            }
+          ]
+        }
+      ]
+    },
+    "chat.participant": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.bold"
+        }
+      ]
+    },
+    "chat.text": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "meta.paragraph.markdown"
         }
       ]
     },

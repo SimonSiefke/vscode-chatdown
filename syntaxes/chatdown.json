@@ -153,22 +153,6 @@
           "name": "meta.paragraph.markdown"
         }
       ]
-    },
-    "chat.key": {
-      "patterns": [
-        {
-          "match": ".*",
-          "name": "markup.italic"
-        }
-      ]
-    },
-    "chat.value": {
-      "patterns": [
-        {
-          "match": ".*",
-          "name": "markup.italic"
-        }
-      ]
     }
   },
   "scopeName": "source.chatdown"

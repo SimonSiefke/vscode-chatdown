@@ -48,7 +48,6 @@ repository:
         name: string.unquoted
       - match: ","
         name: punctuation.separator.chatdown
-
   chat:
     patterns:
       - begin: "^([a-zA-Z]+)(:)"
@@ -70,7 +69,6 @@ repository:
             end: "^(?=[.=]*)$"
             patterns:
               - include: "#chat.text"
-
   chat.participant:
     patterns:
       - match: ".*"
@@ -79,47 +77,6 @@ repository:
     patterns:
       - match: ".*"
         name: meta.paragraph.markdown
-
-      # - match: "^(bot|[a-zA-Z]+)(:)\\s*([^:]*)$"
-      #   name: meta.chat
-      #   captures:
-      #     1:
-      #       name: meta.chat.key
-      #       patterns:
-      #         - include: "#chat.key"
-      #     2:
-      #       name: meta.chat.separator
-      #     3:
-      #       name: meta.chat.value
-      #       patterns:
-      #         - include: "#chat.value"
-  chat.key:
-    patterns:
-      - match: ".*"
-        name: markup.italic
-  chat.value:
-    patterns:
-      - match: ".*"
-        name: markup.italic
-  # meta:
-  #   patterns:
-  #     - match: "a-zA-Z"
-  #       name: markup.italic
-  # - include: "#meta"
-  # while: "(?=[a-zA-Z]+\\s*=\\s*[a-zA-Z]+)" # new line
-  # end: "^$"
-  # end: "^\\s*(?=([a-zA-Z]+=[a-zA-Z]+)*)" # new line
-  # while: "(?=\\s+)|(?=^$)" # new line
-  # meta:
-  #   patterns:
-  #     - match: "^(users?|bot)"
-  #       name: "entity.name.tag.chatdown"
-  #     - match: "="
-  #       name: "punctuation.separator.key-value.mapping.chatdown"
-  #     - match: "[^a-zA-Z\\s]+"
-  #       name: "invalid.illegal.expected-value.chatdown"
-  #     - match: "[a-zA-Z]+"
-  #       name: "string.unquoted.chatdown"
   # chat:
   #   patterns:
   #     - match: "^[a-zA-Z]+(?:(->)([a-zA-Z]+))?"

@@ -100,7 +100,7 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "variable.other.chatdown"
+          "name": "variable.language.this.chatdown"
         }
       ]
     },
@@ -192,7 +192,7 @@
               ]
             },
             "4": {
-              "name": "meta.chat.separator.chatdown"
+              "name": "punctuation.separator.dictionary.key-value.js"
             }
           },
           "patterns": [
@@ -214,7 +214,7 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.bold.chatdown"
+          "name": "storage.type.chatdown"
         }
       ]
     },
@@ -222,7 +222,7 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.bold.chatdown"
+          "name": "storage.type.chatdown"
         }
       ]
     },
@@ -230,7 +230,7 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.bold.chatdown"
+          "name": null
         }
       ]
     },
@@ -238,15 +238,96 @@
       "patterns": [
         {
           "match": ".*",
-          "name": "markup.bold.chatdown"
+          "name": "storage.type.chatdown"
         }
       ]
     },
     "chat.text": {
       "patterns": [
         {
-          "match": "(.*|^\\s*$)",
-          "name": "meta.paragraph.markdown.chatdown"
+          "include": "#chat.text.commands"
+        }
+      ]
+    },
+    "chat.text.commands": {
+      "patterns": [
+        {
+          "begin": "\\[",
+          "end": "\\]",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.array.begin.chatdown"
+            }
+          },
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.array.end.chatdown"
+            }
+          },
+          "name": "meta.structure.array",
+          "patterns": [
+            {
+              "include": "#insideArrayKeyValue"
+            }
+          ]
+        }
+      ]
+    },
+    "insideArrayKeyValue": {
+      "patterns": [
+        {
+          "match": "Typing",
+          "name": "constant.language.chatdown"
+        },
+        {
+          "match": "(Delay)(=)(0|[1-9][0-9]*)",
+          "captures": {
+            "1": {
+              "name": "constant.language"
+            },
+            "2": {
+              "name": "punctuation.separator"
+            },
+            "3": {
+              "name": "constant.numeric"
+            }
+          }
+        },
+        {
+          "match": "(ConversationUpdate)(=)(MembersAdded|MembersRemoved)(=)([a-zA-Z]+(,[a-zA-Z]+)*)",
+          "captures": {
+            "1": {
+              "name": "constant.language"
+            },
+            "2": {
+              "name": "punctuation.separator"
+            },
+            "3": {
+              "name": "constant.language"
+            },
+            "4": {
+              "name": "punctuation.separator"
+            },
+            "5": {
+              "name": "string.unquoted"
+            }
+          }
+        }
+      ]
+    },
+    "number": {
+      "patterns": [
+        {
+          "match": "(?<!\\w)(?:(0|[1-9]\\d*))",
+          "name": "constant.numeric.chatdown"
+        }
+      ]
+    },
+    "string": {
+      "patterns": [
+        {
+          "match": "[a-zA-Z\\d]+",
+          "name": "string.unquoted.chatdown"
         }
       ]
     }

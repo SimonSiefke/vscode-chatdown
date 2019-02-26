@@ -50,7 +50,7 @@ repository:
   frontmatter.key:
     patterns:
       - match: ".*"
-        name: variable.other.chatdown
+        name: variable.language.this.chatdown
   frontmatter.separator:
     patterns:
       - match: ".*"
@@ -97,7 +97,7 @@ repository:
             patterns:
               - include: "#chat.participant.user"
           4:
-            name: meta.chat.separator.chatdown
+            name: punctuation.separator.dictionary.key-value.js
         patterns:
           # TODO make it span multiple lines
           - name: meta.chat.text.chatdown
@@ -108,76 +108,78 @@ repository:
   chat.participant.user:
     patterns:
       - match: ".*"
-        name: markup.bold.chatdown
+        name: storage.type.chatdown
   chat.participant.bot:
     patterns:
       - match: ".*"
-        name: markup.bold.chatdown
+        name: storage.type.chatdown
   chat.separator:
     patterns:
       - match: ".*"
-        name: markup.bold.chatdown
+        name:
   chat.separator.messageto:
     patterns:
       - match: ".*"
-        name: markup.bold.chatdown
+        name: storage.type.chatdown
   chat.text:
     patterns:
-      # - include: text.html.markdown
-      - match: "(.*|^\\s*$)"
-        name: meta.paragraph.markdown.chatdown
-  # chat:
-  #   patterns:
-  #     - match: "^[a-zA-Z]+(?:(->)([a-zA-Z]+))?"
-  #       captures:
-  #         0:
-  #           name: "entity.name.tag.chatdown"
-  #         1:
-  #           name: keyword.operator.to.chatdown
-  #         2:
-  #           name: "entity.name.tag.chatdown"
-  #     - match: "([^:]+)(?=:)"
-  #       name: invalid.illegal.expected-colon.chatdown
-  #     - match: ":"
-  #       name: "punctuation.separator.key-value.mapping.chatdown"
-  #     - match: ".*$"
-  #       name: "meta.structure.dictionary.value.json"
-  #       captures:
-  #         0:
-  #           patterns:
-  #             - include: "#value"
-  # value:
-  #   patterns:
-  #     - begin: "\\["
-  #       end: "\\]"
-  #       beginCaptures:
-  #         0:
-  #           name: "punctuation.definition.array.begin.chatdown"
-  #       endCaptures:
-  #         0:
-  #           name: "punctuation.definition.array.end.chatdown"
-  #       name: "meta.structure.array"
-  #       patterns:
-  #         - include: "#insideArrayKeyValue"
-  # insideArrayKeyValue:
-  #   patterns:
-  #     - match: "(Typing|Delay|ConversationUpdate)"
-  #       name: "constant.language.chatdown"
-  #     - match: "="
-  #       name: punctuation.separator.key-value.mapping.chatdown
-  #     - match: "\\w*"
-  #       name: "meta.structure.dictionary.value.chatdown"
-  #       captures:
-  #         0:
-  #           patterns:
-  #             - include: "#number"
-  #             - include: "#string"
-  # number:
-  #   patterns:
-  #     - match: "(?<!\\w)(?:(0|[1-9]\\d*))"
-  #       name: constant.numeric.chatdown
-  # string:
-  #   patterns:
-  #     - match: "[a-zA-Z\\d]+"
-  #       name: "string.unquoted.chatdown"
+      - include: "#chat.text.commands"
+      # - match: "(.*|^\\s*$)"
+      #   name: meta.paragraph.markdown.chatdown
+  chat.text.commands:
+    patterns:
+      - begin: "\\["
+        end: "\\]"
+        beginCaptures:
+          0:
+            name: "punctuation.definition.array.begin.chatdown"
+        endCaptures:
+          0:
+            name: "punctuation.definition.array.end.chatdown"
+        name: "meta.structure.array"
+        patterns:
+          - include: "#insideArrayKeyValue"
+  insideArrayKeyValue:
+    patterns:
+      - match: "Typing"
+        name: constant.language.chatdown
+      - match: "(Delay)(=)(0|[1-9][0-9]*)"
+        captures:
+          1:
+            name: constant.language
+          2:
+            name: punctuation.separator
+          3:
+            name: constant.numeric
+      - match: "(ConversationUpdate)(=)(MembersAdded|MembersRemoved)(=)([a-zA-Z]+(,[a-zA-Z]+)*)"
+        captures:
+          1:
+            name: constant.language
+          2:
+            name: punctuation.separator
+          3:
+            name: constant.language
+          4:
+            name: punctuation.separator
+          5:
+            name: string.unquoted
+      # - match: "(Typing|Delay|ConversationUpdate)"
+      #   name: "constant.language.chatdown"
+      # - match: "="
+      #   name: punctuation.separator.key-value.mapping.chatdown
+      # - match: "\\w*"
+      #   name: "meta.structure.dictionary.value.chatdown"
+      #   captures:
+      #     0:
+      #       patterns:
+      #         - include: "#number"
+      #         - include: "#string"
+  number:
+    patterns:
+      - match: "(?<!\\w)(?:(0|[1-9]\\d*))"
+        name: constant.numeric.chatdown
+  string:
+    patterns:
+      - match: "[a-zA-Z\\d]+"
+        name: "string.unquoted.chatdown"
 scopeName: source.chatdown

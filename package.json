@@ -15,15 +15,23 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": ["Programming Languages"],
-  "activationEvents": ["onLanguage:markdown"],
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
   "main": "./dist/clientMain",
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": ["Chatdown"],
-        "extensions": [".chat"],
+        "aliases": [
+          "Chatdown"
+        ],
+        "extensions": [
+          ".chat"
+        ],
         "configuration": "./configurations/chatdown.json"
       }
     ],
@@ -59,7 +67,7 @@
     "semantic-release": "^15.13.3",
     "semantic-release-vsce": "^2.2.6",
     "tslint": "^5.9.1",
-    "typescript": "^2.7.2",
+    "typescript": "^3.3.3333",
     "vscode": "^1.1.11"
   },
   "release": {

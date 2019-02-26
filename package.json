@@ -15,13 +15,19 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": ["Programming Languages"],
+  "categories": [
+    "Programming Languages"
+  ],
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": ["Chatdown"],
-        "extensions": [".chat"],
+        "aliases": [
+          "Chatdown"
+        ],
+        "extensions": [
+          ".chat"
+        ],
         "configuration": "./configurations/chatdown.json"
       }
     ],
@@ -57,7 +63,7 @@
     "@types/node": "^11.9.5",
     "npm-run-all": "^4.1.5",
     "semantic-release": "^15.13.3",
-    "semantic-release-config-bitworkers": "^1.2.3",
+    "semantic-release-config-bitworkers": "^1.2.4",
     "typescript": "^3.3.3333",
     "vscode": "^1.1.30"
   }

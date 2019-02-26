@@ -1,5 +1,3 @@
 module.exports = {
-  extends: 'semantic-release-config-bitworkers'
+  extends: 'semantic-release-config-bitworkers/src'
 }
-
-require('semantic-release-config-bitworkers/src/')

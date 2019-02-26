@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.0...v1.0.1) (2019-02-26)
+
+
+### Bug Fixes
+
+* try to add bot schema ([6ebd2ab](https://github.com/SimonSiefke/vscode-chatdown/commit/6ebd2ab))
+
 # 1.0.0 (2019-02-26)
 
 

@@ -4,7 +4,7 @@
   "description": "chatdown language support for vscode",
   "version": "1.0.3",
   "publisher": "SimonSiefke",
-  "icon": "chatdown_icon.png",
+  "icon": "icon.png",
   "license": "MIT",
   "homepage": "https://github.com/SimonSiefke/vscode-chatdown/blob/master/README.md",
   "repository": {
@@ -15,23 +15,15 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": [
-    "Programming Languages"
-  ],
-  "activationEvents": [
-    "onLanguage:markdown"
-  ],
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:markdown"],
   "main": "./dist/clientMain",
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": [
-          "Chatdown"
-        ],
-        "extensions": [
-          ".chat"
-        ],
+        "aliases": ["Chatdown"],
+        "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
       }
     ],

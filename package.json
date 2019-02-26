@@ -15,32 +15,20 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": [
-    "Programming Languages"
-  ],
-  "activationEvents": [
-    "onLanguage:markdown",
-    "onLanguage:chatdown",
-    "onLanguage:json2"
-  ],
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:markdown", "onLanguage:chatdown", "onLanguage:json2"],
   "main": "./dist/clientMain",
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": [
-          "Chatdown"
-        ],
-        "extensions": [
-          ".chat"
-        ],
+        "aliases": ["Chatdown"],
+        "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
       },
       {
         "id": "json2",
-        "extensions": [
-          ".json2"
-        ],
+        "extensions": [".json2"],
         "configuration": "./configurations/chatdown.json"
       }
     ],
@@ -102,14 +90,14 @@
       },
       {
         "path": "semantic-release-vsce",
-        "packageVsix": "ddev.vsix"
+        "packageVsix": "chatdown.vsix"
       }
     ],
     "publish": [
       "semantic-release-vsce",
       {
         "path": "@semantic-release/github",
-        "assets": "ddev.vsix"
+        "assets": "chatdown.vsix"
       }
     ]
   }

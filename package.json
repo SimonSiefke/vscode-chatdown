@@ -2,7 +2,7 @@
   "name": "chatdown",
   "displayName": "chatdown",
   "description": "chatdown language support for vscode",
-  "version": "0.0.0-semantically-released",
+  "version": "1.0.3",
   "publisher": "SimonSiefke",
   "icon": "chatdown_icon.png",
   "license": "MIT",

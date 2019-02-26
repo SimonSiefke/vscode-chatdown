@@ -5,3 +5,5 @@
 > Chatdown language support for VSCode
 
 ![screenshot of the syntax highlighting](./images/screenshot.png)
+
+<!-- TODO: make the screenshot larger -->

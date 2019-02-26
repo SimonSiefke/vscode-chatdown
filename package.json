@@ -59,15 +59,15 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "prettier": "^1.11.1",
-    "vscode-languageclient": "^4.0.0",
-    "vscode-languageserver-types": "^3.6.0"
+    "prettier": "^1.16.4",
+    "vscode-languageclient": "^5.3.0-next.1",
+    "vscode-languageserver-types": "^3.14.0"
   },
   "devDependencies": {
-    "@types/node": "^9.6.42",
+    "@types/node": "^11.9.5",
     "npm-run-all": "^4.1.5",
     "semantic-release": "^15.13.3",
-    "semantic-release-config-bitworkers": "^1.1.0",
+    "semantic-release-config-bitworkers": "^1.1.1",
     "tslint": "^5.13.0",
     "typescript": "^3.3.3333",
     "vscode": "^1.1.30"

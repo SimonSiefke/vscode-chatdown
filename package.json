@@ -15,23 +15,14 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": [
-    "Programming Languages"
-  ],
-  "activationEvents": [
-    "onLanguage:markdown"
-  ],
-  "main": "./dist/clientMain",
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:markdown"],
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": [
-          "Chatdown"
-        ],
-        "extensions": [
-          ".chat"
-        ],
+        "aliases": ["Chatdown"],
+        "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
       }
     ],
@@ -51,7 +42,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p tsconfig.json && tsc -p server/tsconfig.json",
+    "build": "echo ok",
     "watch": "run-p watch-client watch-server",
     "watch-client": "tsc -w -p tsconfig.json",
     "watch-server": "tsc -w -p server/tsconfig.json",

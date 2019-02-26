@@ -1,3 +1,11 @@
+## [1.0.2](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.1...v1.0.2) (2019-02-26)
+
+
+### Bug Fixes
+
+* bot schema ([5c76ef1](https://github.com/SimonSiefke/vscode-chatdown/commit/5c76ef1))
+* semantic release ([f5b620c](https://github.com/SimonSiefke/vscode-chatdown/commit/f5b620c))
+
 ## [1.0.1](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.0...v1.0.1) (2019-02-26)
 
 

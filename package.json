@@ -16,7 +16,7 @@
     "vscode": "^1.29.0"
   },
   "categories": ["Programming Languages"],
-  "activationEvents": ["onLanguage:markdown", "onLanguage:chatdown", "onLanguage:json2"],
+  "activationEvents": ["onLanguage:markdown"],
   "main": "./dist/clientMain",
   "contributes": {
     "languages": [
@@ -25,11 +25,6 @@
         "aliases": ["Chatdown"],
         "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
-      },
-      {
-        "id": "json2",
-        "extensions": [".json2"],
-        "configuration": "./configurations/chatdown.json"
       }
     ],
     "grammars": [
@@ -37,11 +32,6 @@
         "language": "chatdown",
         "scopeName": "source.chatdown",
         "path": "./syntaxes/chatdown.json"
-      },
-      {
-        "language": "json2",
-        "scopeName": "source.json2",
-        "path": "./syntaxes/json2.json"
       }
     ]
   },

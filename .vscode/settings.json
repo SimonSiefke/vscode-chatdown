@@ -4,7 +4,7 @@
   },
   "json.schemas": [
     {
-      "fileMatch": ["/syntaxes/chatdown.json"],
+      "fileMatch": ["/syntaxes/json2.json"],
       "url": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json"
     }
   ],

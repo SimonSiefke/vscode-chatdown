@@ -1,0 +1,20 @@
+{
+  "fileTypes": ["json2"],
+  "patterns": [
+    {
+      "include": "#italics"
+    }
+  ],
+  "name": "json2",
+  "scopeName": "source.json2",
+  "repository": {
+    "italics": {
+      "patterns": [
+        {
+          "match": ".*",
+          "name": "markup.italic"
+        }
+      ]
+    }
+  }
+}

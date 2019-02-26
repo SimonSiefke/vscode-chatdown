@@ -33,6 +33,12 @@
         "scopeName": "source.chatdown",
         "path": "./syntaxes/chatdown.json"
       }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "*.bot",
+        "url": "https://raw.githubusercontent.com/SimonSiefke/vscode-chatdown/master/schemas/bot.json"
+      }
     ]
   },
   "scripts": {

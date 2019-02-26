@@ -256,7 +256,7 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "$comment": "id and name are from ConnectedService",
+          "$comment": "id and name are external",
           "properties": {
             "id": {},
             "name": {
@@ -293,7 +293,7 @@
           "type": "object",
           "additionalProperties": false,
           "required": ["appId"],
-          "$comment": "id, name and type are from ConnectedService",
+          "$comment": "id, name and type are external",
           "properties": {
             "id": {},
             "name": {},
@@ -546,7 +546,6 @@
     },
     "BotConfiguration": {
       "type": "object",
-      "$comment": "see https://github.com/Microsoft/botbuilder-js/blob/db9c461e1d1c1099adb16a0ff46f7e5bf478b01a/libraries/botframework-config/src/schema.ts#L285",
       "properties": {
         "name": {
           "type": "string",

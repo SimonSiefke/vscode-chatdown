@@ -2,9 +2,9 @@
   "name": "chatdown",
   "displayName": "chatdown",
   "description": "chatdown language support for vscode",
-  "version": "0.0.0-semantically-released",
+  "version": "0.0.1",
   "publisher": "SimonSiefke",
-  "icon": "ddev_icon.png",
+  "icon": "chatdown_icon.png",
   "license": "MIT",
   "homepage": "https://github.com/SimonSiefke/vscode-chatdown/blob/master/README.md",
   "repository": {

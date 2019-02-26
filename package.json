@@ -16,7 +16,6 @@
     "vscode": "^1.29.0"
   },
   "categories": ["Programming Languages"],
-  "activationEvents": ["onLanguage:chatdown"],
   "contributes": {
     "languages": [
       {
@@ -36,11 +35,7 @@
     "jsonValidation": [
       {
         "fileMatch": "*.bot",
-        "url": "https://raw.githubusercontent.com/SimonSiefke/vscode-chatdown/master/schemas/bot.json"
-      },
-      {
-        "fileMatch": ".jshintrc2",
-        "url": "http://json.schemastore.org/jshintrc"
+        "url": "./schemas/bot.json"
       }
     ]
   },
@@ -62,7 +57,7 @@
     "@types/node": "^11.9.5",
     "npm-run-all": "^4.1.5",
     "semantic-release": "^15.13.3",
-    "semantic-release-config-bitworkers": "^1.2.2",
+    "semantic-release-config-bitworkers": "^1.2.3",
     "typescript": "^3.3.3333",
     "vscode": "^1.1.30"
   }

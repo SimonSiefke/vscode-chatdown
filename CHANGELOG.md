@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.3...v1.1.0) (2019-02-27)
+
+
+### Features
+
+* add intellisense ([7a42201](https://github.com/SimonSiefke/vscode-chatdown/commit/7a42201))
+
 ## [1.0.3](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.2...v1.0.3) (2019-02-27)
 
 

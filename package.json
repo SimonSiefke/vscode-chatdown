@@ -28,10 +28,8 @@
       },
       {
         "id": "json",
-        "filenames": [
-          "*.bot"
-        ]
-      },
+        "filenames": ["*.bot"]
+      }
     ],
     "grammars": [
       {

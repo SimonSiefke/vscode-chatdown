@@ -9,6 +9,7 @@ import {
 } from 'vscode-languageclient'
 
 export function activate(context: vscode.ExtensionContext) {
+  console.log('server')
   const serverModule = context.asAbsolutePath(path.join('server', 'dist', 'serverMain.js'))
   const debugOptions = { execArgv: ['--nolazy', '--inspect=6006'] }
 
@@ -22,9 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
   }
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [
-      { scheme: 'file', language: 'chatdown' },
-    ],
+    documentSelector: [{ scheme: 'file', language: 'chatdown' }],
     synchronize: {
       configurationSection: []
     }
@@ -34,4 +33,22 @@ export function activate(context: vscode.ExtensionContext) {
 
   const disposable = client.start()
   context.subscriptions.push(disposable)
+
+  context.subscriptions.push(registerCompletion())
+}
+
+function registerCompletion() {
+  console.log('hi')
+  return vscode.languages.registerCompletionItemProvider(
+    { pattern: '*.bott' },
+    {
+      provideCompletionItems(document, position, token, context) {
+        return [
+          {
+            label: 'bot configuration'
+          }
+        ]
+      }
+    }
+  )
 }

@@ -17,7 +17,6 @@ const connection: IConnection = createConnection(
 )
 const documents: TextDocuments = new TextDocuments()
 documents.listen(connection)
-console.log('listen')
 connection.onInitialize(
   (params): InitializeResult => {
     return {

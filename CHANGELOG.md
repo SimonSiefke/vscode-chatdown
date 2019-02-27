@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.2...v1.0.3) (2019-02-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency vscode-languageserver to v5 ([213a0fc](https://github.com/SimonSiefke/vscode-chatdown/commit/213a0fc))
+
 ## [1.0.2](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.1...v1.0.2) (2019-02-26)
 
 

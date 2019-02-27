@@ -25,7 +25,13 @@
         "aliases": ["Chatdown"],
         "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
-      }
+      },
+      {
+        "id": "json",
+        "filenames": [
+          "*.bot"
+        ]
+      },
     ],
     "grammars": [
       {

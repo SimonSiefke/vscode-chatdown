@@ -28,7 +28,7 @@
       },
       {
         "id": "json",
-        "filenames": ["*.bot"]
+        "filenamePatterns": ["*.bot"]
       }
     ],
     "grammars": [

@@ -1,3 +1,11 @@
+## [1.1.1](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.1.0...v1.1.1) (2019-02-27)
+
+
+### Bug Fixes
+
+* associate .bot files with json ([d76de54](https://github.com/SimonSiefke/vscode-chatdown/commit/d76de54))
+* package.json ([50913e9](https://github.com/SimonSiefke/vscode-chatdown/commit/50913e9))
+
 # [1.1.0](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.0.3...v1.1.0) (2019-02-27)
 
 

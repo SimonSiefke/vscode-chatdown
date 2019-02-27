@@ -1,18 +1,10 @@
 {
   "compilerOptions": {
-    // Basic
     "module": "commonjs",
-    "target": "es6",
-
-    // Output
+    "target": "es2017",
     "outDir": "dist",
-    // Dev Only
     "sourceMap": true,
-
-    // Lib
-    "lib": ["es6"],
-
-    // Strictness
+    "lib": ["esnext"],
     "strict": true,
     "noUnusedLocals": true,
     "skipLibCheck": true

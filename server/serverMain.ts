@@ -17,7 +17,7 @@ const connection: IConnection = createConnection(
 )
 const documents: TextDocuments = new TextDocuments()
 documents.listen(connection)
-
+console.log('listen')
 connection.onInitialize(
   (params): InitializeResult => {
     return {
@@ -42,17 +42,17 @@ connection.onDidChangeWatchedFiles(change => {
 
 connection.onCompletion(
   (position: TextDocumentPositionParams): CompletionItem[] => {
-    return []
+    console.log(position)
     return [
       {
         label: 'user',
-        kind: CompletionItemKind.Keyword,
+        kind: CompletionItemKind.Property,
         data: 1,
         insertText: 'user: '
       },
       {
         label: 'bot',
-        kind: CompletionItemKind.Keyword,
+        kind: CompletionItemKind.Property,
         data: 2,
         insertText: 'bot: '
       }
@@ -62,12 +62,15 @@ connection.onCompletion(
 
 connection.onCompletionResolve(
   (item: CompletionItem): CompletionItem => {
-    if (item.data === 1) {
-      item.detail = 'the user says'
-      // item.documentation = ''
-    } else if (item.data === 2) {
-      item.detail = 'the bot says'
-      // item.documentation = 'JavaScript documentation'
+    switch (item.data) {
+      case 1:
+        item.documentation = 'the user says'
+        break
+      case 2:
+        item.documentation = 'the bot says'
+        break
+      default:
+        break
     }
     return item
   }

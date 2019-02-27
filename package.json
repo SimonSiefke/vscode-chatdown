@@ -15,19 +15,15 @@
   "engines": {
     "vscode": "^1.29.0"
   },
-  "categories": [
-    "Programming Languages"
-  ],
+  "categories": ["Programming Languages"],
+  "activationEvents": ["onLanguage:chatdown"],
+  "main": "./dist/client/extension",
   "contributes": {
     "languages": [
       {
         "id": "chatdown",
-        "aliases": [
-          "Chatdown"
-        ],
-        "extensions": [
-          ".chat"
-        ],
+        "aliases": ["Chatdown"],
+        "extensions": [".chat"],
         "configuration": "./configurations/chatdown.json"
       }
     ],
@@ -48,7 +44,7 @@
   "scripts": {
     "vscode:prepublish": "npm run build",
     "build": "echo ok",
-    "watch": "run-p watch-client watch-server",
+    "dev": "run-p watch-client watch-server",
     "watch-client": "tsc -w -p tsconfig.json",
     "watch-server": "tsc -w -p server/tsconfig.json",
     "postinstall": "node ./node_modules/vscode/bin/install",

@@ -51,8 +51,7 @@
     "dev": "run-p watch-client watch-server",
     "watch-client": "tsc -w -p tsconfig.json",
     "watch-server": "tsc -w -p server/tsconfig.json",
-    "postinstall": "node ./node_modules/vscode/bin/install",
-    "semantic-release": "semantic-release"
+    "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "dependencies": {
     "prettier": "^1.16.4",

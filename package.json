@@ -51,7 +51,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "tsc -p tsconfig.json && tsc -p server/tsconfig.json",
+    "build": "ls -la && cat package.json && tsc -p tsconfig.json && tsc -p server/tsconfig.json",
     "dev": "run-p watch-client watch-server",
     "watch-client": "tsc -w -p tsconfig.json",
     "watch-server": "tsc -w -p server/tsconfig.json",

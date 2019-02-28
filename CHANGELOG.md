@@ -12,6 +12,13 @@
 
 * build script ([7d3578c](https://github.com/SimonSiefke/vscode-chatdown/commit/7d3578c))
 
+## [1.2.1](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.0...v1.2.1) (2019-02-28)
+
+
+### Bug Fixes
+
+* build script ([7d3578c](https://github.com/SimonSiefke/vscode-chatdown/commit/7d3578c))
+
 # [1.2.0](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.1.2...v1.2.0) (2019-02-28)
 
 

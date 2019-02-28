@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.1...v1.2.2) (2019-02-28)
+
+
+### Bug Fixes
+
+* new version ([62c1459](https://github.com/SimonSiefke/vscode-chatdown/commit/62c1459))
+
 ## [1.2.1](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.0...v1.2.1) (2019-02-28)
 
 

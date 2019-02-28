@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.1.2...v1.2.0) (2019-02-28)
+
+
+### Features
+
+* schema for transcript files ([c6dbe0a](https://github.com/SimonSiefke/vscode-chatdown/commit/c6dbe0a))
+
 ## [1.1.2](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.1.1...v1.1.2) (2019-02-27)
 
 

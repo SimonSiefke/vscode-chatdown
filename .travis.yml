@@ -2,9 +2,9 @@ language: node_js
 
 node_js: lts/*
 
-# script:
-# - npm run lint
-# - npm run build # check that the build is passing
+script:
+  # - npm run lint
+  - npm run build # check that the build is passing
 
 stages:
   # - test
@@ -16,4 +16,4 @@ jobs:
     - stage: release
       language: node_js
       node_js: "lts/*"
-      script: npm run build && npx semantic-release
+      script: npx semantic-release

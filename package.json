@@ -51,11 +51,11 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run build",
-    "build": "cat package.json && tsc",
+    "build": "tsc -p tsconfig.json && tsc -p server/tsconfig.json",
     "dev": "run-p watch-client watch-server",
     "watch-client": "tsc -w -p tsconfig.json",
     "watch-server": "tsc -w -p server/tsconfig.json",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install && cd server && npm install && cd .."
   },
   "dependencies": {
     "prettier": "^1.16.4",

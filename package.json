@@ -28,7 +28,7 @@
       },
       {
         "id": "json",
-        "filenamePatterns": ["*.bot"]
+        "filenamePatterns": ["*.bot", "*.transcript"]
       }
     ],
     "grammars": [
@@ -42,6 +42,10 @@
       {
         "fileMatch": "*.bot",
         "url": "./schemas/bot.json"
+      },
+      {
+        "fileMatch": "*.transcript",
+        "url": "./schemas/transcript.json"
       }
     ]
   },

@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.4...v1.2.5) (2019-03-04)
+
+
+### Bug Fixes
+
+* bot configuration ([adb1dfe](https://github.com/SimonSiefke/vscode-chatdown/commit/adb1dfe))
+
 ## [1.2.4](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.3...v1.2.4) (2019-03-04)
 
 

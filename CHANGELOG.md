@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.3...v1.2.4) (2019-03-04)
+
+
+### Bug Fixes
+
+* update bot schema ([b4e97ec](https://github.com/SimonSiefke/vscode-chatdown/commit/b4e97ec))
+
 ## [1.2.3](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.2...v1.2.3) (2019-02-28)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "chatdown",
   "displayName": "chatdown",
-  "description": "chatdown language support for vscode",
+  "description": "chatdown language support for vscode and intellisense for .bot files",
   "version": "0.0.0-semantically-released",
   "publisher": "SimonSiefke",
   "icon": "icon.png",

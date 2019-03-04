@@ -5,3 +5,8 @@
 > Chatdown language support for VSCode
 
 ![screenshot of the syntax highlighting](./images/screenshot.png)
+
+## Features
+
+- syntax highlighting for `.chat` files
+- intellisense for `.bot` files

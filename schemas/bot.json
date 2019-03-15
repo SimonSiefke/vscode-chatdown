@@ -291,7 +291,7 @@
         {
           "type": "object",
           "additionalProperties": false,
-          "required": ["appId"],
+          "required": ["appId", "region"],
           "$comment": "id, name and type are external",
           "properties": {
             "id": {},

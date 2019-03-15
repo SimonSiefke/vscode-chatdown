@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.5...v1.2.6) (2019-03-15)
+
+
+### Bug Fixes
+
+* bot file attributes ([92e0507](https://github.com/SimonSiefke/vscode-chatdown/commit/92e0507))
+
 ## [1.2.5](https://github.com/SimonSiefke/vscode-chatdown/compare/v1.2.4...v1.2.5) (2019-03-04)
 
 
